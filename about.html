@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Pediment Property Management</title>
+  <meta name="description" content="Who we are, what we stand for, and why we started Pediment Property Management." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Pediment</span>
+          <span class="nav-logo-sub">Property Management</span>
+        </div>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="fees.html">Fees</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Intro -->
+  <div class="about-intro">
+    <div class="container">
+      <span class="eyebrow" style="display:block; margin-bottom: 1rem;">About Us</span>
+      <h1>Built on the belief that property management should be better.</h1>
+      <p>Pediment exists because landlords deserve more than the standard letting agent experience.</p>
+    </div>
+  </div>
+
+  <!-- Story -->
+  <section class="about-story">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-sidebar">
+          <span class="eyebrow">Our Story</span>
+          <h2>Why we started Pediment</h2>
+        </div>
+        <div class="about-body">
+          <p>The letting industry has a reputation problem. Landlords routinely deal with poor communication, reactive maintenance, compliance oversights, and agents who treat their portfolio as an afterthought. Tenants often fare no better. It doesn't have to be this way.</p>
+          <p>Pediment was founded on a straightforward belief: that property management done well — with clear standards, consistent communication, and genuine care — produces better outcomes for everyone involved. Better relationships between landlords and tenants. Fewer voids, fewer disputes, and properties that hold their value.</p>
+          <p>We work with a deliberately manageable number of properties so that every landlord receives proper attention. We'd rather do fewer things well than spread ourselves too thin.</p>
+          <p>The name comes from architecture — the pediment is the triangular structure above a row of columns, the defining mark of a building built to last. That's the standard we hold ourselves to.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="values">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="eyebrow">What We Stand For</span>
+        <h2>Our values</h2>
+        <p>These aren't aspirations — they're the way we work, every day.</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <h3>Honesty</h3>
+          <p>We tell landlords what they need to hear, not what they want to hear. If there's a problem, you'll know about it promptly and with a clear plan.</p>
+        </div>
+        <div class="value-card">
+          <h3>Reliability</h3>
+          <p>We do what we say we'll do, when we say we'll do it. Simple as that. In an industry where follow-through is rare, we make it a baseline.</p>
+        </div>
+        <div class="value-card">
+          <h3>Care</h3>
+          <p>We manage properties as though they were our own. That means attention to detail, swift responses, and taking pride in the condition and performance of every home.</p>
+        </div>
+        <div class="value-card">
+          <h3>Clarity</h3>
+          <p>No jargon, no hidden fees, no surprises. Everything we do is explained clearly — from our pricing to our processes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="container">
+      <h2>Like what you've heard?</h2>
+      <p>We're always happy to have a straightforward conversation about whether Pediment is the right fit for your property.</p>
+      <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand nav-logo">
+          <div class="nav-logo-text">
+            <span class="nav-logo-name">Pediment</span>
+            <span class="nav-logo-sub">Property Management</span>
+          </div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="fees.html">Fees</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <p class="footer-copy">&copy; 2026 Pediment Property Management. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

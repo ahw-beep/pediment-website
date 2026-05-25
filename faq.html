@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQs — Pediment Property Management</title>
+  <meta name="description" content="Answers to common landlord questions about property management, fees, tenants, compliance, and working with Pediment." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ---- FAQ-specific styles ---- */
+    .faq-intro {
+      padding-top: 8rem;
+      padding-bottom: 4rem;
+      background: var(--charcoal);
+    }
+    .faq-intro h1 { color: var(--white); margin-bottom: 1rem; }
+    .faq-intro p  { color: rgba(255,255,255,0.6); max-width: 540px; font-size: 0.95rem; }
+
+    .faq-section { background: var(--white); }
+
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .faq-nav {
+      position: sticky;
+      top: 7rem;
+    }
+
+    .faq-nav-title {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 1.2rem;
+    }
+
+    .faq-nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .faq-nav ul li {
+      margin-bottom: 0.1rem;
+    }
+
+    .faq-nav ul li a {
+      font-size: 0.82rem;
+      color: var(--mid);
+      display: block;
+      padding: 0.45rem 0;
+      border-left: 2px solid var(--border);
+      padding-left: 1rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .faq-nav ul li a:hover {
+      color: var(--charcoal);
+      border-color: var(--stone);
+    }
+
+    .faq-group {
+      margin-bottom: 3.5rem;
+    }
+
+    .faq-group-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--charcoal);
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      padding: 1.4rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .faq-question-text {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.5;
+    }
+
+    .faq-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--stone);
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    .faq-icon::before {
+      width: 12px;
+      height: 1px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .faq-icon::after {
+      width: 1px;
+      height: 12px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .faq-item.open .faq-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+      opacity: 0;
+    }
+
+    .faq-answer {
+      display: none;
+      padding-bottom: 1.4rem;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    .faq-answer p {
+      font-size: 0.9rem;
+      color: var(--mid);
+      line-height: 1.9;
+      margin-bottom: 0.9rem;
+    }
+
+    .faq-answer p:last-child { margin-bottom: 0; }
+
+    .faq-answer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0.9rem;
+    }
+
+    .faq-answer ul li {
+      font-size: 0.88rem;
+      color: var(--mid);
+      padding: 0.3rem 0 0.3rem 1.2rem;
+      position: relative;
+    }
+
+    .faq-answer ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--stone);
+    }
+
+    @media (max-width: 768px) {
+      .faq-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .faq-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Pediment</span>
+          <span class="nav-logo-sub">Property Management</span>
+        </div>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="fees.html">Fees</a></li>
+        <li><a href="faq.html" class="active">FAQ</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Intro -->
+  <div class="faq-intro">
+    <div class="container">
+      <span class="eyebrow" style="display:block; margin-bottom: 1rem;">Frequently Asked Questions</span>
+      <h1>Questions landlords usually ask us.</h1>
+      <p>If something isn't answered here, get in touch — we're happy to talk through anything before you make a decision.</p>
+    </div>
+  </div>
+
+  <!-- FAQ Content -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="faq-layout">
+
+        <!-- Sidebar Nav -->
+        <nav class="faq-nav">
+          <div class="faq-nav-title">Jump to</div>
+          <ul>
+            <li><a href="#getting-started">Getting Started</a></li>
+            <li><a href="#tenants">Finding Tenants</a></li>
+            <li><a href="#management">Day-to-Day Management</a></li>
+            <li><a href="#compliance">Compliance & Legal</a></li>
+            <li><a href="#fees-faq">Fees & Money</a></li>
+            <li><a href="#switching">Switching Agent</a></li>
+          </ul>
+        </nav>
+
+        <!-- Questions -->
+        <div class="faq-content">
+
+          <!-- Getting Started -->
+          <div class="faq-group" id="getting-started">
+            <h2 class="faq-group-title">Getting Started</h2>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">How does the process work when I first get in touch?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>We start with a straightforward conversation — either by phone or email — to understand your property and what you're looking for. From there, we'll arrange a property appraisal, agree on the right service for your situation, and get everything set up. There's no pressure and no commitment required until you're ready.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">What areas do you cover?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <!-- UPDATE: Replace with your actual coverage area -->
+                <p>We currently operate in [your area — update this]. If you're unsure whether your property falls within our area, just get in touch and we'll let you know.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">Do I need to use full management, or can I just use you to find a tenant?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>Both options are available. If you're an experienced landlord who's comfortable managing the day-to-day yourself, our tenant finding service gets you a thoroughly vetted tenant and all the documentation in order. If you'd rather hand everything over, full management covers the lot.</p>
+                <p>Many landlords start with tenant finding and move to full management once they see how much easier it makes things. There's no obligation to do so.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">How long does it take to get a tenant in?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>It varies by property and market conditions, but most properties are let within two to four weeks of being listed. Realistic pricing and good presentation make a significant difference to how quickly a property lets — we'll give you honest advice on both when we see the property.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Finding Tenants -->
+          <div class="faq-group" id="tenants">
+            <h2 class="faq-group-title">Finding Tenants</h2>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">Where do you advertise properties?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>We list on the major UK property portals including Rightmove and Zoopla, supported by professional photography and accurate, well-written descriptions. We also draw on our own network of prospective tenants who've previously registered an interest.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">What does your referencing process involve?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>We run thorough checks on every applicant before making a recommendation:</p>
+                <ul>
+                  <li>Full credit check</li>
+                  <li>Employment and income verification</li>
+                  <li>Previous landlord reference</li>
+                  <li>Right to Rent check</li>
+                  <li>Identity verification</li>
+                </ul>
+                <p>We don't cut corners here. A poor referencing decision costs landlords far more than the time it takes to do it properly.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">Can I approve the tenant before they move in?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>Yes. We'll always present you with our recommendation and the supporting reference information before any tenancy is agreed. The final decision is yours.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">Do you take a deposit, and how is it protected?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>Yes — we collect a deposit from the tenant at the start of the tenancy, typically equivalent to five weeks' rent. This is registered with a government-approved Tenancy Deposit Protection scheme within the legal timeframe. At the end of the tenancy, we manage the check-out process and any deposit negotiations on your behalf.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day-to-Day Management -->
+          <div class="faq-group" id="management">
+            <h2 class="faq-group-title">Day-to-Day Management</h2>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">What happens if my tenant doesn't pay rent?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>We act promptly. If rent isn't received on the due date, we contact the tenant immediately and keep you informed. Most arrears situations are resolved quickly with direct communication. If the situation escalates, we'll guide you through the legal process and next steps.</p>
+                <p>Thorough referencing upfront significantly reduces the likelihood of rent arrears — which is why we take that process seriously.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">How do you handle maintenance issues?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>Tenants report issues directly to us. We assess urgency, instruct trusted contractors, and keep you informed throughout. For routine repairs, we'll proceed within an agreed spending limit without needing to contact you each time. For anything above that threshold, we'll always check with you first.</p>
+                <p>Emergency maintenance — things like boiler failures or leaks — is covered 24/7.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">How often do you inspect the property?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>We carry out periodic inspections — typically every three to six months — with advance notice given to the tenant as required by law. After each inspection you'll receive a written report with photos. If anything needs attention, we'll flag it and agree a course of action with you.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">How do I receive my rent, and when?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>Rent is collected from the tenant on their due date, our fee is deducted, and the balance is transferred directly to you — typically within one to two working days. You'll receive a monthly statement confirming the amounts.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Compliance -->
+          <div class="faq-group" id="compliance">
+            <h2 class="faq-group-title">Compliance & Legal</h2>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">What certificates does my property need?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>At a minimum, most rental properties require:</p>
+                <ul>
+                  <li>Gas Safety Certificate — annually (if there's a gas supply)</li>
+                  <li>Electrical Installation Condition Report (EICR) — every five years</li>
+                  <li>Energy Performance Certificate (EPC) — valid for ten years, but must meet a minimum E rating</li>
+                  <li>Working smoke alarms on every floor</li>
+                  <li>Carbon monoxide detectors in rooms with solid fuel appliances</li>
+                </ul>
+                <p>We track all of these on your behalf and arrange renewals before they expire.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">Are you a member of a redress scheme?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <!-- UPDATE: Add your actual redress scheme membership details -->
+                <p>Yes. All letting agents and property managers in England are legally required to belong to a government-approved redress scheme. We are members of [scheme name — update this], which provides landlords and tenants with an independent route to resolve complaints.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">Is my money protected?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <!-- UPDATE: Add your CMP scheme details -->
+                <p>Yes. We hold client money — including rent and deposits — in a separate client account and are members of a Client Money Protection (CMP) scheme. This means your funds are protected in the event of any financial failure on our part. Details of our CMP membership are available on request.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fees -->
+          <div class="faq-group" id="fees-faq">
+            <h2 class="faq-group-title">Fees & Money</h2>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">Are there any fees not listed on your fees page?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>No. Everything we charge is listed on our <a href="fees.html" style="color: var(--stone);">fees page</a>. We don't add hidden charges or mark up contractor invoices. If an unusual situation arises that warrants a cost not covered by our standard fee structure, we'll discuss it with you before proceeding.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">Do I still pay your fee if the property is empty?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>No. Our management fee is a percentage of rent collected — if no rent comes in, no management fee is charged. This means we're as motivated as you are to keep void periods short.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">How much notice do I need to give to end the management agreement?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <!-- UPDATE: Add your actual notice period -->
+                <p>We ask for [X weeks/months] written notice to end a management agreement. Full details are set out in the management agreement you'll sign at the outset — we're happy to talk through these terms before you commit to anything.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Switching -->
+          <div class="faq-group" id="switching">
+            <h2 class="faq-group-title">Switching Agent</h2>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">I'm currently with another agent. How easy is it to switch?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>Switching is usually more straightforward than landlords expect. The main steps are: serving notice on your current agent in line with their agreement, then transferring the relevant documentation — tenancy agreement, deposit details, compliance certificates — across to us.</p>
+                <p>We handle the administrative side of this and will guide you through it. You don't need to wait for a tenancy to end before switching.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">Does the tenant need to be informed if I switch agents?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>Yes — tenants must be formally notified of any change to the management arrangement, including updated contact details and where to pay rent. We take care of this communication on your behalf as part of the handover process.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span class="faq-question-text">What if my current agent is holding a deposit?</span>
+                <span class="faq-icon"></span>
+              </button>
+              <div class="faq-answer">
+                <p>Deposits registered with a government-backed scheme remain protected regardless of which agent manages the property — the registration is tied to the tenancy, not the agent. If your current agent holds the deposit directly, the transfer process will depend on the scheme involved. We'll help you understand what's needed once we know the specifics.</p>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- end faq-content -->
+      </div><!-- end faq-layout -->
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="container">
+      <h2>Still have a question?</h2>
+      <p>We're happy to answer anything not covered here — just get in touch.</p>
+      <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand nav-logo">
+          <div class="nav-logo-text">
+            <span class="nav-logo-name">Pediment</span>
+            <span class="nav-logo-sub">Property Management</span>
+          </div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="fees.html">Fees</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <p class="footer-copy">&copy; 2026 Pediment Property Management. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      // Close all open items
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      // Open this one if it wasn't already open
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+</body>
+</html>

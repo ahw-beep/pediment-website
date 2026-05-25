@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fees — Pediment Property Management</title>
+  <meta name="description" content="Transparent, straightforward fees for landlords. No hidden charges. See exactly what you pay with Pediment Property Management." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ---- Fees-specific styles ---- */
+    .fees-intro {
+      padding-top: 8rem;
+      padding-bottom: 4rem;
+      background: var(--charcoal);
+    }
+    .fees-intro h1 { color: var(--white); margin-bottom: 1rem; }
+    .fees-intro p  { color: rgba(255,255,255,0.6); max-width: 540px; font-size: 0.95rem; }
+
+    .fees-section { background: var(--white); }
+
+    .fees-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .fee-card {
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .fee-card.featured {
+      border-color: var(--stone);
+    }
+
+    .fee-card-badge {
+      position: absolute;
+      top: -1px;
+      left: 2.5rem;
+      background: var(--stone);
+      color: var(--white);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+    }
+
+    .fee-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--charcoal);
+      margin-bottom: 0.4rem;
+    }
+
+    .fee-card-sub {
+      font-size: 0.8rem;
+      color: var(--mid);
+      letter-spacing: 0.08em;
+      margin-bottom: 2rem;
+    }
+
+    .fee-price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .fee-price-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      line-height: 1;
+    }
+
+    .fee-price-unit {
+      font-size: 0.8rem;
+      color: var(--mid);
+      letter-spacing: 0.06em;
+    }
+
+    .fee-price-note {
+      font-size: 0.78rem;
+      color: var(--mid);
+      margin-bottom: 2rem;
+    }
+
+    .fee-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 1.8rem;
+    }
+
+    .fee-includes-title {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 1rem;
+    }
+
+    .fee-includes {
+      list-style: none;
+      padding: 0;
+    }
+
+    .fee-includes li {
+      font-size: 0.87rem;
+      color: var(--mid);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .fee-includes li:last-child { border-bottom: none; }
+
+    .fee-includes li::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 1px;
+      background: var(--stone);
+      flex-shrink: 0;
+    }
+
+    .additional-fees {
+      background: var(--offwhite);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .additional-fees h3 {
+      font-size: 1.3rem;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .additional-fees .intro-text {
+      font-size: 0.88rem;
+      color: var(--mid);
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    .additional-fees-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0;
+      border: 1px solid var(--border);
+    }
+
+    .add-fee-item {
+      padding: 1.2rem 1.5rem;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    .add-fee-item:nth-child(3n) { border-right: none; }
+
+    .add-fee-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      margin-bottom: 0.3rem;
+    }
+
+    .add-fee-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--stone);
+    }
+
+    .no-hidden {
+      background: var(--charcoal);
+      padding: 3rem 2.5rem;
+      display: flex;
+      gap: 3rem;
+      align-items: start;
+      margin-bottom: 0;
+    }
+
+    .no-hidden-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .no-hidden-text p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.85;
+      max-width: 560px;
+    }
+
+    @media (max-width: 768px) {
+      .fees-grid { grid-template-columns: 1fr; }
+      .additional-fees-grid { grid-template-columns: 1fr 1fr; }
+      .add-fee-item:nth-child(3n) { border-right: 1px solid var(--border); }
+      .add-fee-item:nth-child(2n) { border-right: none; }
+      .no-hidden { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Pediment</span>
+          <span class="nav-logo-sub">Property Management</span>
+        </div>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="fees.html" class="active">Fees</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Intro -->
+  <div class="fees-intro">
+    <div class="container">
+      <span class="eyebrow" style="display:block; margin-bottom: 1rem;">Our Fees</span>
+      <h1>Transparent pricing. No surprises.</h1>
+      <p>We believe landlords should know exactly what they're paying — and why — before committing to anything.</p>
+    </div>
+  </div>
+
+  <!-- Fees -->
+  <section class="fees-section">
+    <div class="container">
+
+      <div class="fees-grid">
+
+        <!-- Tenant Finding -->
+        <div class="fee-card">
+          <div class="fee-card-name">Tenant Finding</div>
+          <div class="fee-card-sub">One-off service</div>
+          <div class="fee-price">
+            <!-- UPDATE: Replace with your actual fee, e.g. "£X+VAT" or "X% of first month's rent" -->
+            <span class="fee-price-number">£[X]</span>
+          </div>
+          <div class="fee-price-note">One-off fee + VAT — or [X]% of first month's rent, whichever you prefer. We'll confirm exact pricing after discussing your property.</div>
+          <div class="fee-divider"></div>
+          <div class="fee-includes-title">What's included</div>
+          <ul class="fee-includes">
+            <li>Professional photography and listings</li>
+            <li>Accompanied viewings</li>
+            <li>Full referencing (credit, employment, previous landlord)</li>
+            <li>Right to Rent checks</li>
+            <li>Tenancy agreement preparation</li>
+            <li>Deposit registration</li>
+            <li>Key handover and tenant move-in</li>
+          </ul>
+        </div>
+
+        <!-- Full Management -->
+        <div class="fee-card featured">
+          <div class="fee-card-badge">Most Popular</div>
+          <div class="fee-card-name">Full Management</div>
+          <div class="fee-card-sub">Ongoing monthly fee</div>
+          <div class="fee-price">
+            <!-- UPDATE: Replace with your actual percentage, e.g. "12%" -->
+            <span class="fee-price-number">[X]%</span>
+            <span class="fee-price-unit">of monthly rent + VAT</span>
+          </div>
+          <div class="fee-price-note">Tenant finding is included when taking full management — no separate upfront fee.</div>
+          <div class="fee-divider"></div>
+          <div class="fee-includes-title">What's included</div>
+          <ul class="fee-includes">
+            <li>Everything in Tenant Finding</li>
+            <li>Rent collection and arrears management</li>
+            <li>24/7 maintenance coordination</li>
+            <li>Periodic property inspections</li>
+            <li>Tenancy renewals and rent reviews</li>
+            <li>Compliance management</li>
+            <li>Monthly financial statements</li>
+            <li>Dedicated point of contact</li>
+            <li>Check-out and deposit resolution</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Additional Fees -->
+      <div class="additional-fees">
+        <h3>Additional charges</h3>
+        <p class="intro-text">Where third-party costs are involved — such as certificates or professional services — we pass these on at cost with no mark-up. The figures below are indicative; actual costs depend on your property.</p>
+        <div class="additional-fees-grid">
+          <div class="add-fee-item">
+            <div class="add-fee-label">Gas Safety Certificate</div>
+            <div class="add-fee-price">~£[X] per year</div>
+          </div>
+          <div class="add-fee-item">
+            <div class="add-fee-label">EICR (Electrical Report)</div>
+            <div class="add-fee-price">~£[X] every 5 years</div>
+          </div>
+          <div class="add-fee-item">
+            <div class="add-fee-label">Energy Performance Cert.</div>
+            <div class="add-fee-price">~£[X] as required</div>
+          </div>
+          <div class="add-fee-item">
+            <div class="add-fee-label">Check-out Report</div>
+            <div class="add-fee-price">£[X] per tenancy end</div>
+          </div>
+          <div class="add-fee-item">
+            <div class="add-fee-label">Inventory Report</div>
+            <div class="add-fee-price">£[X] per tenancy start</div>
+          </div>
+          <div class="add-fee-item">
+            <div class="add-fee-label">Renewal Admin</div>
+            <div class="add-fee-price">£[X] per renewal</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- No hidden fees -->
+      <div class="no-hidden">
+        <div class="no-hidden-text">
+          <h3>No hidden fees. Ever.</h3>
+          <p>Everything we charge is disclosed upfront. We don't add management markups to contractor invoices, charge for phone calls, or apply fees that weren't agreed in advance. If something comes up that we think warrants a cost, we'll discuss it with you first.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="container">
+      <h2>Want an exact quote for your property?</h2>
+      <p>Fees can vary slightly depending on property type, location, and your situation. Get in touch and we'll give you a clear number.</p>
+      <a href="contact.html" class="btn btn-primary">Get a Quote</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand nav-logo">
+          <div class="nav-logo-text">
+            <span class="nav-logo-name">Pediment</span>
+            <span class="nav-logo-sub">Property Management</span>
+          </div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="fees.html">Fees</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <p class="footer-copy">&copy; 2026 Pediment Property Management. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
