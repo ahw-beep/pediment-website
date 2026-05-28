@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enquiry Sent — Pediment Property Management</title>
+  <meta name="description" content="Thank you for your enquiry. We'll be in touch within one working day." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Pediment</span>
+          <span class="nav-logo-sub">Property Management</span>
+        </div>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="fees.html">Fees</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Success Message -->
+  <div class="contact-intro">
+    <div class="container" style="text-align: center; padding: 6rem 1rem;">
+      <span class="eyebrow" style="display:block; margin-bottom: 1rem;">Enquiry Sent</span>
+      <h1>Thank you — we'll be in touch.</h1>
+      <p style="max-width: 520px; margin: 1.5rem auto 2.5rem;">We've received your message and will respond within one working day. In the meantime, feel free to explore the site.</p>
+      <a href="index.html" class="btn btn-primary">Back to Home</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand nav-logo">
+          <div class="nav-logo-text">
+            <span class="nav-logo-name">Pediment</span>
+            <span class="nav-logo-sub">Property Management</span>
+          </div>
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="fees.html">Fees</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <p class="footer-copy">&copy; 2026 Pediment Property Management. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
